@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <div class="alert alert-danger" *ngIf="isInvalid">
+        <strong>Username or Password is incorrect! Please try again!</strong>
+      </div>
+
+     
+    
+
+      <div class="card" style="width: 25rem; margin: 30px auto 0; background-color: white;">
+        <div class="card-body">
+          <h3 class="card-title text-center py-3">Sign In</h3>
+          <form>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" class="form-control py-2" [(ngModel)]="user.username" placeholder="Enter Username" />
+            </div>
+
+            <div class="form-group">
+              <label for ="password">Password:</label>
+              <input type="password" name="password" [(ngModel)]="user.password" class="form-control py-2" placeholder="••••••••" />
+            </div>
+
+            <div class="row justify-content-md-center py-3">
+              <button type="button" (click)="onLoggedIn()" class="btn btn-info">Sign In</button>
+            </div>
+          </form>
+
+          <div class="row justify-content-md-center py-3">
+            <a routerLink="/signup">Sign Up</a>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" *ngIf="isEnabled">
+        <div class="card-header">
+            Activation Required
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Activate your account by clicking the link sent to your email!</h5>
+            <div class="form-group">
+                <input [(ngModel)]="code" type="text" class="form-control" placeholder="Enter Code" />
+            </div>
+            <button type="button" (click)="onActivate()" class="btn btn-primary mt-2">Activate</button>
+        </div>
+    </div>
+    <div class="error-box" *ngIf="errorMessage">
+      <div class="alert alert-danger">
+          <strong>Error:</strong> {{ errorMessage }}
+      </div>
+    </div>    
+</div>
+<style>
+  .error-box {
+  border: 1px solid #dc3545;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f8d7da;
+  border-radius: 5px;
+}
+</style>
